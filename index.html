@@ -1,0 +1,1000 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Phương Khanh ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --pink: #ffb6c1;
+        --rose: #e75480;
+        --wine: #7a003c;
+        --glass: rgba(255, 255, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: radial-gradient(circle at top, #3a0f2b, #0b0614);
+        color: #fff;
+        overflow-x: hidden;
+      }
+
+      /* MUSIC */
+      .music-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+        background: var(--glass);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 22px;
+      }
+
+      /* HERO */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 3rem;
+      }
+
+      .hero span {
+        color: var(--pink);
+      }
+
+      /* TIMELINE */
+      .timeline {
+        position: relative;
+        padding: 80px 10%;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(var(--rose), transparent);
+      }
+
+      /* SECTION */
+      .section {
+        margin-bottom: 150px;
+        position: relative;
+      }
+
+      .section-content {
+        max-width: 1000px;
+        margin: auto;
+        background: var(--glass);
+        backdrop-filter: blur(15px);
+        padding: 50px;
+        border-radius: 30px;
+        opacity: 0;
+        transform: translateY(80px);
+        transition: 1.2s ease;
+      }
+
+      .section-content.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* LETTER */
+      .letter {
+        font-family: "Playfair Display", serif;
+        font-size: 1.6rem;
+        line-height: 1.8;
+        margin-bottom: 40px;
+        border-left: 4px solid var(--pink);
+        padding-left: 25px;
+      }
+
+      /* GALLERY */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 18px;
+        box-shadow: 0 20px 40px rgba(255, 182, 193, 0.25);
+        transform: scale(0.9);
+        transition: 0.6s ease;
+      }
+
+      .section-content.show .gallery img {
+        transform: scale(1);
+      }
+
+      .gallery img:hover {
+        transform: scale(1.08);
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 100px 20px;
+        font-size: 1.4rem;
+        color: var(--pink);
+      }
+
+      /* 💍 FINAL SECTION */
+      .final {
+        position: relative;
+        min-height: 100vh;
+        background: radial-gradient(circle at center, #3a0f2b, #0b0614);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      /* OVERLAY */
+      .final-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        cursor: pointer;
+        transition: opacity 1s ease;
+      }
+
+      .final-overlay.active {
+        opacity: 1;
+      }
+
+      .final-overlay.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .tap-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1.8rem;
+        color: var(--pink);
+        text-align: center;
+        animation: pulse 2.5s infinite;
+      }
+
+      /* CONTENT */
+      .final-content {
+        max-width: 800px;
+        padding: 80px 25px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 2s ease;
+      }
+
+      .final-content.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .final-content h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.6rem;
+        margin-bottom: 40px;
+        color: var(--pink);
+      }
+
+      .final-content p {
+        font-size: 1.25rem;
+        line-height: 2;
+        margin-bottom: 28px;
+      }
+
+      .signature {
+        margin-top: 50px;
+        font-size: 1.4rem;
+        color: var(--pink);
+      }
+
+      /* 💖 TOUCH HEART EFFECT */
+      .touch-heart {
+        position: absolute;
+        font-size: 24px;
+        animation: touch 1.5s ease forwards;
+        pointer-events: none;
+      }
+
+      @keyframes touch {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(2.5) translateY(-80px);
+          opacity: 0;
+        }
+      }
+
+      /* 🌸 FLOATING ANIMATIONS */
+      .floating {
+        position: absolute;
+        pointer-events: none;
+        animation: floatUp linear forwards;
+      }
+
+      @keyframes floatUp {
+        to {
+          transform: translateY(-120vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .polaroid {
+        padding: 120px 20px;
+        text-align: center;
+      }
+
+      .polaroid .wall {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .polaroid .wall div {
+        background: #fff;
+        padding: 12px;
+        width: 200px;
+        transform: rotate(-3deg);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .polaroid img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .polaroid span {
+        display: block;
+        margin-top: 10px;
+        color: #333;
+        font-size: 0.9rem;
+      }
+
+      .dream {
+        min-height: 150vh;
+
+        background:
+          linear-gradient(rgba(27, 12, 46, 0.75), rgba(0, 0, 0, 0.9)),
+          url("images/15.jpg");
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        font-size: 1.8rem;
+        color: #fff;
+
+        animation: breathe 8s ease-in-out infinite;
+      }
+
+      /* HEARTS */
+      .heart {
+        position: fixed;
+        bottom: -20px;
+        animation: rise 6s linear;
+        opacity: 0.6;
+      }
+      .petal {
+        position: fixed;
+        top: -30px;
+        pointer-events: none;
+        opacity: 0.8;
+        animation: fall linear forwards;
+      }
+      .letter {
+        animation: breathe 6s ease-in-out infinite;
+      }
+
+      .love-list {
+        min-height: 100vh;
+        padding: 120px 20px;
+        text-align: center;
+      }
+
+      .love-list h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.4rem;
+        color: var(--pink);
+        margin-bottom: 60px;
+      }
+
+      .love-list .item {
+        font-size: 1.4rem;
+        margin: 25px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 1s ease;
+      }
+
+      .love-list .item.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.015);
+        }
+      }
+
+      .gallery::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.25),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: 1.2s ease;
+        pointer-events: none;
+      }
+
+      .section-content.show .gallery::after {
+        opacity: 1;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(120vh) translateX(80px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes rise {
+        to {
+          transform: translateY(-120vh);
+          opacity: 0;
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .timeline::before {
+          left: 10px;
+        }
+      }
+      /* =========================
+   📱 MOBILE OPTIMIZATION
+========================= */
+      @media (max-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+
+        /* HERO */
+        .hero {
+          padding: 40px 20px;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+          line-height: 1.4;
+        }
+
+        /* MUSIC BUTTON */
+        .music-btn {
+          width: 60px;
+          height: 60px;
+          font-size: 24px;
+        }
+
+        /* TIMELINE */
+        .timeline {
+          padding: 60px 20px;
+        }
+
+        .timeline::before {
+          left: 8px;
+          width: 2px;
+        }
+
+        /* SECTION CARD */
+        .section-content {
+          padding: 30px 25px;
+          border-radius: 24px;
+        }
+
+        /* LETTER */
+        .letter {
+          font-size: 1.3rem;
+          line-height: 1.9;
+          padding-left: 18px;
+          margin-bottom: 30px;
+        }
+
+        /* GALLERY */
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 16px;
+        }
+
+        .gallery img {
+          height: 180px;
+          border-radius: 20px;
+        }
+
+        /* FOOTER */
+        footer {
+          font-size: 1.2rem;
+          padding: 70px 20px;
+        }
+      }
+
+      /* EXTRA SMALL DEVICES */
+      @media (max-width: 400px) {
+        .hero h1 {
+          font-size: 1.9rem;
+        }
+
+        .letter {
+          font-size: 1.15rem;
+        }
+
+        .gallery img {
+          height: 150px;
+        }
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 182, 193, 0.15),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(231, 84, 128, 0.12),
+            transparent 45%
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(122, 0, 60, 0.15),
+            transparent 50%
+          );
+        animation: bgMove 20s ease-in-out infinite alternate;
+        z-index: -1;
+      }
+
+      @keyframes bgMove {
+        from {
+          transform: scale(1) translateY(0);
+        }
+        to {
+          transform: scale(1.1) translateY(-40px);
+        }
+      }
+
+      .wish-section {
+        min-height: 100vh;
+        padding: 120px 20px;
+        background: radial-gradient(circle at top, #2a0f3f, #000);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .wish-title {
+        font-family: "Playfair Display", serif;
+        font-size: 2.4rem;
+        color: #ffd6ec;
+        margin-bottom: 60px;
+        animation: wishFade 2s ease;
+      }
+
+      .stars {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .stars span {
+        font-size: 36px;
+        cursor: pointer;
+        animation: starFloat 4s ease-in-out infinite;
+        transition: transform 0.3s;
+      }
+
+      .stars span:hover {
+        transform: scale(1.4);
+      }
+
+      .wish-message {
+        margin-top: 50px;
+        font-size: 1.4rem;
+        color: #fff;
+        min-height: 60px;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+
+      /* Animations */
+      @keyframes starFloat {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes wishFade {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .heartbeat-section {
+        position: relative;
+        min-height: 100vh;
+        padding: 140px 20px;
+        background: radial-gradient(circle at center, #1a0b2e, #000);
+        text-align: center;
+        overflow: hidden;
+      }
+
+      /* Aurora background */
+      .aurora {
+        position: absolute;
+        inset: -50%;
+        background:
+          radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 120, 200, 0.15),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 70% 60%,
+            rgba(180, 120, 255, 0.15),
+            transparent 40%
+          );
+        animation: auroraMove 12s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      @keyframes auroraMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(10%, 5%);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      .heartbeat-title {
+        position: relative;
+        z-index: 1;
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        color: #ffd6ec;
+        margin-bottom: 60px;
+      }
+
+      /* Heart */
+      .heart-core {
+        position: relative;
+        z-index: 1;
+        font-size: 80px;
+        cursor: pointer;
+        animation: heartIdle 3s ease-in-out infinite;
+      }
+
+      @keyframes heartIdle {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+
+      /* When active */
+      .heart-core.active {
+        animation: heartBeat 1.2s ease-in-out infinite;
+      }
+
+      @keyframes heartBeat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.25);
+        }
+        40% {
+          transform: scale(1);
+        }
+        60% {
+          transform: scale(1.15);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Text reveal */
+      .heartbeat-text {
+        position: relative;
+        z-index: 1;
+        margin-top: 50px;
+      }
+
+      .heartbeat-text p {
+        font-size: 1.4rem;
+        color: #fff;
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: 0.8s ease;
+      }
+
+      .heartbeat-text p.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="music-btn" onclick="toggleMusic()">🎵</div>
+    <audio id="music" loop>
+      <source src="music/Young And Beautiful (1).mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="hero">
+      <h1>Gửi <span>Phương Khanh</span><br />Hành trình của chúng ta ❤️</h1>
+    </div>
+
+    <section class="love-list">
+      <h2>Những điều anh yêu ở em</h2>
+      <div class="items">
+        <div class="item">✨ Nụ cười khiến anh thấy mọi thứ đều ổn</div>
+        <div class="item">💖 Cách em quan tâm người khác rất tự nhiên</div>
+        <div class="item">🌸 Những lúc em im lặng nhưng vẫn ở bên</div>
+        <div class="item">🌙 Cách em làm anh thấy bình yên</div>
+        <div class="item">💫 Và cả những điều chưa kịp gọi tên</div>
+      </div>
+    </section>
+
+    <section class="polaroid">
+      <h2>Ký ức của chúng ta</h2>
+      <div class="wall">
+        <div><img src="images/10.jpg" /><span>Ngày đầu tiên</span></div>
+        <div><img src="images/11.jpg" /><span>Nụ cười ấy</span></div>
+        <div><img src="images/14.jpg" /><span>Một buổi chiều</span></div>
+        <div><img src="images/12.jpg" /><span>Bên nhau mãi nhé</span></div>
+      </div>
+    </section>
+
+    <section class="wish-section">
+      <h2 class="wish-title">Những điều ước anh dành cho em</h2>
+
+      <div class="stars">
+        <span data-text="Mong em luôn cười nhiều hơn mỗi ngày">✨</span>
+        <span data-text="Mong em luôn được yêu thương đúng cách">⭐</span>
+        <span data-text="Mong những ngày buồn sẽ ít đi">🌟</span>
+        <span data-text="Mong anh luôn là nơi em muốn quay về">💫</span>
+        <span data-text="Mong chúng ta đủ kiên nhẫn với nhau">✨</span>
+      </div>
+
+      <p class="wish-message"></p>
+    </section>
+
+    <div class="timeline">
+      <!-- LETTER 1 -->
+      <div class="section">
+        <div class="section-content reveal">
+          <div class="letter">
+            Ngày anh gặp em, anh không biết rằng khoảnh khắc ấy lại mở ra một
+            hành trình mà trái tim anh không bao giờ muốn quay đầu.
+          </div>
+          <div class="gallery">
+            <img src="images/1.jpg" />
+            <img src="images/2.jpg" />
+            <img src="images/3.jpg" />
+            <img src="images/4.jpg" />
+          </div>
+        </div>
+      </div>
+
+      <!-- LETTER 2 -->
+      <div class="section">
+        <div class="section-content reveal">
+          <div class="letter">
+            Chúng ta đã cùng nhau đi qua những điều rất bình thường, nhưng với
+            anh đó là những ngày hạnh phúc nhất.
+          </div>
+          <div class="gallery">
+            <img src="images/5.jpg" />
+            <img src="images/6.jpg" />
+            <img src="images/7.jpg" />
+            <img src="images/8.jpg" />
+          </div>
+        </div>
+      </div>
+
+      <!-- LETTER 3 -->
+      <div class="section">
+        <div class="section-content reveal">
+          <div class="letter">
+            Tương lai có thể còn nhiều thử thách, nhưng nếu là cùng em, anh sẵn
+            sàng đi đến tận cùng. Valentine này, và mãi về sau.
+          </div>
+          <div class="gallery">
+            <img src="images/9.jpg" />
+            <img src="images/10.jpg" />
+            <img src="images/11.jpg" />
+            <img src="images/12.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="heartbeat-section">
+      <div class="aurora"></div>
+
+      <h2 class="heartbeat-title">Nhịp tim của chúng ta</h2>
+
+      <div class="heart-core" id="heartCore">❤️</div>
+
+      <div class="heartbeat-text">
+        <p data-text="Có những khoảnh khắc anh nhận ra…"></p>
+        <p data-text="Chỉ cần em ở đó, mọi thứ đều đúng nhịp."></p>
+        <p data-text="Không cần hoàn hảo, chỉ cần là chúng ta."></p>
+      </div>
+    </section>
+
+    <section class="dream">
+      <p>
+        Nếu thế giới này ồn ào quá,<br />
+        anh mong đây sẽ là nơi<br />
+        chỉ có anh và em.
+      </p>
+    </section>
+
+    <!-- FINAL LOVE LETTER -->
+    <section class="final">
+      <div class="final-overlay active" onclick="openFinal()">
+        <div class="tap-text">Chạm vào đây 💗<br />Anh có điều muốn nói…</div>
+      </div>
+
+      <div class="final-content">
+        <h2>Gửi Phương Khanh</h2>
+
+        <p>
+          Anh không biết từ khi nào, nhưng anh biết rất rõ rằng kể từ khi có em,
+          thế giới của anh đã khác đi rất nhiều.
+        </p>
+
+        <p>
+          Những ngày bình thường cũng trở nên đáng nhớ, những khoảnh khắc rất
+          nhỏ cũng đủ khiến anh mỉm cười, chỉ vì trong đó có em.
+        </p>
+
+        <p>
+          Anh không hứa sẽ luôn hoàn hảo, nhưng anh hứa sẽ luôn chân thành.
+          Không hứa sẽ không có sóng gió, nhưng nếu là cùng em, anh chưa từng sợ
+          hãi.
+        </p>
+
+        <p>
+          Valentine này, và tất cả những ngày về sau, anh vẫn muốn được nắm tay
+          em, chậm rãi đi qua mọi điều trong cuộc sống.
+        </p>
+
+        <p class="signature">
+          Anh yêu em rất nhiều ❤️<br />
+          Phương Khanh của anh
+        </p>
+      </div>
+    </section>
+    <script>
+      /* REVEAL */
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      reveals.forEach((r) => observer.observe(r));
+
+      /* MUSIC */
+      const music = document.getElementById("music");
+      let play = false;
+      function toggleMusic() {
+        play ? music.pause() : music.play();
+        play = !play;
+      }
+      const heart = document.getElementById("heartCore");
+      const heartLines = document.querySelectorAll(".heartbeat-text p");
+
+      let opened = false;
+
+      // Click / touch tim → bật cảm xúc
+      heart.addEventListener("click", () => {
+        if (opened) return;
+        opened = true;
+
+        heart.classList.add("active");
+
+        heartLines.forEach((line, i) => {
+          setTimeout(() => {
+            line.innerText = line.dataset.text;
+            line.classList.add("show");
+          }, i * 900);
+        });
+      });
+
+      // Scroll tới section → tim sống dậy
+      const heartbeatSection = document.querySelector(".heartbeat-section");
+      const hbObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            heart.classList.add("active");
+          }
+        },
+        { threshold: 0.4 },
+      );
+
+      hbObserver.observe(heartbeatSection);
+
+      /* HEARTS */
+      setInterval(() => {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerText = "❤";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = Math.random() * 18 + 14 + "px";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+      }, 600);
+
+      setInterval(() => {
+        const p = document.createElement("div");
+        p.className = "petal";
+        p.innerText = Math.random() > 0.5 ? "❤" : "🌸";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.fontSize = Math.random() * 14 + 14 + "px";
+        p.style.animationDuration = Math.random() * 6 + 6 + "s";
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 12000);
+      }, 700);
+
+      window.addEventListener("scroll", () => {
+        document.querySelectorAll(".gallery img").forEach((img) => {
+          const rect = img.getBoundingClientRect();
+          const offset = rect.top * 0.08;
+          img.style.transform = `translateY(${offset}px) scale(1)`;
+        });
+      });
+
+      function openFinal() {
+        document.querySelector(".final-overlay").classList.add("hide");
+        const content = document.querySelector(".final-content");
+        content.classList.add("show");
+
+        // Burst hearts
+        for (let i = 0; i < 20; i++) {
+          spawnFloating();
+        }
+      }
+
+      const wishText = document.querySelector(".wish-message");
+      const stars = document.querySelectorAll(".stars span");
+
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          wishText.style.opacity = 0;
+
+          setTimeout(() => {
+            wishText.innerText = star.dataset.text;
+            wishText.style.opacity = 1;
+          }, 300);
+        });
+      });
+
+      document.querySelectorAll(".love-list .item").forEach((el, i) => {
+        setTimeout(() => el.classList.add("show"), i * 600);
+      });
+
+      /* TOUCH EFFECT */
+      document.querySelector(".final").addEventListener("click", (e) => {
+        const heart = document.createElement("div");
+        heart.className = "touch-heart";
+        heart.innerText = "❤";
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1500);
+      });
+
+      /* FLOATING CARTOON ELEMENTS */
+      function spawnFloating() {
+        const el = document.createElement("div");
+        el.className = "floating";
+        el.innerText = ["❤", "🌸", "✨", "💖"][Math.floor(Math.random() * 4)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.bottom = "-20px";
+        el.style.fontSize = Math.random() * 18 + 16 + "px";
+        el.style.animationDuration = Math.random() * 6 + 6 + "s";
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 12000);
+      }
+
+      setInterval(spawnFloating, 1200);
+    </script>
+  </body>
+</html>
