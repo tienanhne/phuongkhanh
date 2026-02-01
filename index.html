@@ -329,6 +329,60 @@
       .letter {
         animation: breathe 6s ease-in-out infinite;
       }
+      .cinematic-vortex {
+        min-height: 200vh;
+        color: white;
+        text-align: center;
+        padding-top: 120px;
+      }
+
+      .cinematic-title {
+        font-size: clamp(26px, 4vw, 44px);
+        margin-bottom: 120px;
+        letter-spacing: 1.5px;
+      }
+
+      .cinematic-stage {
+        position: sticky;
+        top: 20vh;
+        width: 420px;
+        height: 420px;
+        margin: auto;
+      }
+
+      .cinematic-center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 15px;
+        line-height: 1.9;
+        color: rgba(255, 255, 255, 0.85);
+        z-index: 100;
+      }
+
+      .orb {
+        position: absolute;
+        width: 110px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 14px;
+        transform: translate(-50%, -50%) scale(2);
+      }
+
+      @media (max-width: 768px) {
+        .cinematic-stage {
+          width: 300px;
+          height: 300px;
+        }
+
+        .orb {
+          width: 80px;
+          height: 110px;
+        }
+      }
 
       .love-list {
         min-height: 100vh;
@@ -589,118 +643,6 @@
           transform: translateY(0);
         }
       }
-
-      .heartbeat-section {
-        position: relative;
-        min-height: 100vh;
-        padding: 140px 20px;
-        background: radial-gradient(circle at center, #1a0b2e, #000);
-        text-align: center;
-        overflow: hidden;
-      }
-
-      /* Aurora background */
-      .aurora {
-        position: absolute;
-        inset: -50%;
-        background:
-          radial-gradient(
-            circle at 30% 30%,
-            rgba(255, 120, 200, 0.15),
-            transparent 40%
-          ),
-          radial-gradient(
-            circle at 70% 60%,
-            rgba(180, 120, 255, 0.15),
-            transparent 40%
-          );
-        animation: auroraMove 12s ease-in-out infinite;
-        z-index: 0;
-      }
-
-      @keyframes auroraMove {
-        0% {
-          transform: translate(0, 0);
-        }
-        50% {
-          transform: translate(10%, 5%);
-        }
-        100% {
-          transform: translate(0, 0);
-        }
-      }
-
-      .heartbeat-title {
-        position: relative;
-        z-index: 1;
-        font-family: "Playfair Display", serif;
-        font-size: 2.5rem;
-        color: #ffd6ec;
-        margin-bottom: 60px;
-      }
-
-      /* Heart */
-      .heart-core {
-        position: relative;
-        z-index: 1;
-        font-size: 80px;
-        cursor: pointer;
-        animation: heartIdle 3s ease-in-out infinite;
-      }
-
-      @keyframes heartIdle {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.08);
-        }
-      }
-
-      /* When active */
-      .heart-core.active {
-        animation: heartBeat 1.2s ease-in-out infinite;
-      }
-
-      @keyframes heartBeat {
-        0% {
-          transform: scale(1);
-        }
-        25% {
-          transform: scale(1.25);
-        }
-        40% {
-          transform: scale(1);
-        }
-        60% {
-          transform: scale(1.15);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-
-      /* Text reveal */
-      .heartbeat-text {
-        position: relative;
-        z-index: 1;
-        margin-top: 50px;
-      }
-
-      .heartbeat-text p {
-        font-size: 1.4rem;
-        color: #fff;
-        margin: 20px 0;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: 0.8s ease;
-      }
-
-      .heartbeat-text p.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
     </style>
   </head>
 
@@ -798,18 +740,23 @@
         </div>
       </div>
     </div>
+    <section class="cinematic-vortex">
+      <h2 class="cinematic-title">Every memory slowly finds its way to you</h2>
 
-    <section class="heartbeat-section">
-      <div class="aurora"></div>
+      <div class="cinematic-stage">
+        <div class="cinematic-center">
+          Phương Khanh<br />
+          là nơi mọi ký ức dừng lại
+        </div>
 
-      <h2 class="heartbeat-title">Nhịp tim của chúng ta</h2>
-
-      <div class="heart-core" id="heartCore">❤️</div>
-
-      <div class="heartbeat-text">
-        <p data-text="Có những khoảnh khắc anh nhận ra…"></p>
-        <p data-text="Chỉ cần em ở đó, mọi thứ đều đúng nhịp."></p>
-        <p data-text="Không cần hoàn hảo, chỉ cần là chúng ta."></p>
+        <img src="images/1.jpg" class="orb o1" />
+        <img src="images/2.jpg" class="orb o2" />
+        <img src="images/3.jpg" class="orb o3" />
+        <img src="images/4.jpg" class="orb o4" />
+        <img src="images/5.jpg" class="orb o5" />
+        <img src="images/6.jpg" class="orb o6" />
+        <img src="images/7.jpg" class="orb o7" />
+        <img src="images/8.jpg" class="orb o8" />
       </div>
     </section>
 
@@ -878,38 +825,6 @@
         play ? music.pause() : music.play();
         play = !play;
       }
-      const heart = document.getElementById("heartCore");
-      const heartLines = document.querySelectorAll(".heartbeat-text p");
-
-      let opened = false;
-
-      // Click / touch tim → bật cảm xúc
-      heart.addEventListener("click", () => {
-        if (opened) return;
-        opened = true;
-
-        heart.classList.add("active");
-
-        heartLines.forEach((line, i) => {
-          setTimeout(() => {
-            line.innerText = line.dataset.text;
-            line.classList.add("show");
-          }, i * 900);
-        });
-      });
-
-      // Scroll tới section → tim sống dậy
-      const heartbeatSection = document.querySelector(".heartbeat-section");
-      const hbObserver = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting) {
-            heart.classList.add("active");
-          }
-        },
-        { threshold: 0.4 },
-      );
-
-      hbObserver.observe(heartbeatSection);
 
       /* HEARTS */
       setInterval(() => {
@@ -940,7 +855,41 @@
           img.style.transform = `translateY(${offset}px) scale(1)`;
         });
       });
+      /* FINAL SECTION */
+      const section = document.querySelector(".cinematic-vortex");
+      const orbs = document.querySelectorAll(".orb");
 
+      const radiusStart = 220;
+      const radiusEnd = 0;
+
+      window.addEventListener("scroll", () => {
+        const rect = section.getBoundingClientRect();
+        const progress = Math.min(
+          Math.max(
+            (window.innerHeight - rect.top) /
+              (window.innerHeight + rect.height),
+            0,
+          ),
+          1,
+        );
+
+        orbs.forEach((orb, i) => {
+          const angle = progress * 2.5 + i * (Math.PI / 4);
+          const radius = radiusStart * (1 - progress);
+
+          const x = 210 + Math.cos(angle) * radius;
+          const y = 210 + Math.sin(angle) * radius;
+
+          orb.style.left = `${x}px`;
+          orb.style.top = `${y}px`;
+          orb.style.opacity = progress;
+          orb.style.transform = `
+        translate(-50%, -50%)
+        scale(${2 - progress})
+        rotate(${progress * 360}deg)
+      `;
+        });
+      });
       function openFinal() {
         document.querySelector(".final-overlay").classList.add("hide");
         const content = document.querySelector(".final-content");
